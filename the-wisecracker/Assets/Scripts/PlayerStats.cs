@@ -6,7 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
     public float hp = 100.0f;
 
-    public float speed = 5f;
+    public float positionSpeed = 5f;
+    public float rotationSpeed = 1f;
     public float gravity = 10f;
 
     public bool canRun = true;

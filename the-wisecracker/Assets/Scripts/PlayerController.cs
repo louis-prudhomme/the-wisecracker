@@ -6,16 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerStats stats;
     private CharacterController controller;
-    private CameraController playerCamera;
 
-    public Vector3 movement = new Vector3();
+    private Animator animator;
+
+    public Vector3 position = new Vector3();
 
     // Start is called before the first frame update
     void Start()
     {
         stats = GetComponent<PlayerStats>();
         controller = GetComponent<CharacterController>();
-        playerCamera = GetComponentInChildren<CameraController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,16 +37,22 @@ public class PlayerController : MonoBehaviour
             Mathf.Abs(Input.GetAxis("Vertical")) +
             Mathf.Abs(Input.GetAxis("Horizontal"));
 
-        movement = (transform.TransformDirection(Vector3.forward)
-            * stats.speed
+        if (stats.moving) animator.Play("Moving");
+        else animator.Play("Idle");
+
+        position = (transform.TransformDirection(Vector3.forward)
+            * stats.positionSpeed
             * Input.GetAxis("Vertical"))
             + (transform.TransformDirection(Vector3.right)
-            * stats.speed
+            * stats.positionSpeed
             * Input.GetAxis("Horizontal"));
 
-        if (!controller.isGrounded) movement.y -= stats.gravity;
-        movement *= Time.deltaTime;
+        transform.rotation *= Quaternion.Euler(0, 
+            Input.GetAxis("Horizontal") * stats.rotationSpeed, 0);
 
-        controller.Move(movement);
+        if (!controller.isGrounded) position.y -= stats.gravity;
+        position *= Time.deltaTime;
+
+        controller.Move(position);
     }
 }
