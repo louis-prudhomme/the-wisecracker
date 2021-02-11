@@ -24,14 +24,24 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
         RotatePlayer();
+
+        if (Input.GetButton("Fire1") && stats.CanShoot)
+            Fire();
+    }
+
+    private void Fire()
+    {
+        GameObject grenade = Instantiate(stats.grenadePrefab,
+            transform.position, transform.rotation,
+            GameObject.FindGameObjectWithTag("ProjectilesContainer").transform);
+        grenade.SetActive(true);
+
+        stats.lastShot = 0;
     }
 
     private void RotatePlayer()
     {
-        var mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(
-            Input.mousePosition.x,
-            Input.mousePosition.y,
-            transform.position.y));
+        var mousePosition = Utils.MousePosition();
         mousePosition.y = transform.position.y;
         transform.LookAt(mousePosition);
     }

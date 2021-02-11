@@ -12,21 +12,21 @@ public class PlayerStats : MonoBehaviour
 
     public bool canRun = true;
     public bool canMove = true;
+    public bool CanShoot => lastShot > shotDelay;
 
     public bool moving = false;
     public bool dead = false;
 
     public bool lockMouse = true;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public float shotDelay = 1;
+    public float lastShot = 0;
+
+    public GameObject grenadePrefab;
+
+    private void Update()
     {
-        
+        if (!CanShoot)
+            lastShot += Time.deltaTime;
     }
 }

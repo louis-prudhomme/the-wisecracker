@@ -26,14 +26,6 @@ public class RioterController : MonoBehaviour
 
     private void Update()
     {
-        if (state == RioterState.STANDARD)
-        {
-            currentFear += stats.fear.Step * 10 * Time.deltaTime;
-            if (currentFear > stats.fear.Cap)
-                agent.destination = retreat.transform.position;
-        } else
-        {
-            agent.destination = goal.transform.position;
-        }
+
     }
 }
