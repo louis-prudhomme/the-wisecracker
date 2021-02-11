@@ -36,7 +36,10 @@ public class RioterSpawner : MonoBehaviour
             rioterController.goal = riotersGoals[Random.Range(0, 3)];
             rioterController.retreat = riotersRetreats[Random.Range(0, 3)];
 
-            Instantiate(rioterPrefab, position, rioterPrefab.transform.rotation, riotersContainer.transform);
+
+            Instantiate(rioterPrefab, position, rioterPrefab.transform.rotation, riotersContainer.transform)
+                .SetActive(true);
+
         }
     }
 }
