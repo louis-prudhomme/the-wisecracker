@@ -10,12 +10,15 @@
   - [x] buildings
   - [x] roads
   - [x] furniture
-- [ ] Make ennemies
-- [ ] Import ennemies assets
-- [ ] Skin ennemies w/ assets
-- [ ] Ennemies life points
+- [x] Make rioters
+- [x] Change aim
+- [x] Import rioters assets
+- [x] Skin rioters w/ assets
+- [ ] rioters fear
+- [ ] rioters anger
 - [ ] Make cursor
-- [ ] Make attack to ennemies
+- [ ] Animate rioters
+- [ ] Make attack to rioters
 - [ ] Make different weapons
 - [ ] Import weapons assets
 - [ ] Skin weapons
@@ -23,7 +26,7 @@
 - [ ] Add start menu
 - [ ] Add endgame (over + won)
 - [ ] Add end menu
-- [ ] Add IA to ennemies
+- [ ] Add IA to rioters
   - [ ] Coming to you
   - [ ] Dying 
   - [ ] Reacting to weapons

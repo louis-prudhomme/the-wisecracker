@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    public Vector3 position = new Vector3();
+    private Vector3 position = new Vector3();
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +22,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.lockState = stats.lockMouse 
-            ? CursorLockMode.Locked 
-            : CursorLockMode.None;
-
-        Cursor.visible = !stats.lockMouse;
-
         MovePlayer();
+        RotatePlayer();
+    }
+
+    private void RotatePlayer()
+    {
+        var mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+            transform.position.y));
+        mousePosition.y = transform.position.y;
+        transform.LookAt(mousePosition);
     }
 
     private void MovePlayer()
@@ -46,9 +51,6 @@ public class PlayerController : MonoBehaviour
             + (transform.TransformDirection(Vector3.right)
             * stats.positionSpeed
             * Input.GetAxis("Horizontal"));
-
-        transform.rotation *= Quaternion.Euler(0, 
-            Input.GetAxis("Horizontal") * stats.rotationSpeed, 0);
 
         if (!controller.isGrounded) position.y -= stats.gravity;
         position *= Time.deltaTime;
