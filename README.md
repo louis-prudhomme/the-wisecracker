@@ -3,10 +3,13 @@
 ## Todo 
 
 - [x] Basic movement (player + camera)
-- [ ] Import player assets
-- [ ] Skin player w/ assets
-- [ ] Import city assets
+- [x] Import player assets
+- [x] Skin player w/ assets
+- [x] Import city assets
 - [ ] Make some city
+  - [x] buildings
+  - [x] roads
+  - [x] furniture
 - [ ] Make ennemies
 - [ ] Import ennemies assets
 - [ ] Skin ennemies w/ assets
@@ -30,3 +33,5 @@
   - [ ] Camera zooming
   - [ ] Bubbles
   - [ ] Avatars
+- [ ] push trash bin
+- [ ] 
