@@ -9,6 +9,7 @@ TagManager:
   - RiotersContainer
   - RiotersRetreat
   - ProjectilesContainer
+  - GrenadeFlashRadius
   layers:
   - Default
   - TransparentFX

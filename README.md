@@ -15,6 +15,7 @@
 - [x] Import rioters assets
 - [x] Skin rioters w/ assets
 - [ ] rioters fear
+- [ ] simulate player blindness
 - [ ] rioters anger
 - [ ] Make cursor
 - [ ] Animate rioters

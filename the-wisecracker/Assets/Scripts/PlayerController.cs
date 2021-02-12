@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStats stats;
     private CharacterController controller;
 
+    private GameObject projectilesContainer;
     private Animator animator;
 
     private Vector3 position = new Vector3();
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        projectilesContainer = GameObject.FindGameObjectWithTag("ProjectilesContainer");
     }
 
     // Update is called once per frame
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject grenade = Instantiate(stats.grenadePrefab,
             transform.position, transform.rotation,
-            GameObject.FindGameObjectWithTag("ProjectilesContainer").transform);
+            projectilesContainer.transform);
         grenade.SetActive(true);
 
         stats.lastShot = 0;

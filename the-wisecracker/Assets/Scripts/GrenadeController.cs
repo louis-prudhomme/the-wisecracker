@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GrenadeController : MonoBehaviour
 {
-    public GameObject flash;
+    public GameObject radius;
+
     private Rigidbody body;
-    private static GameObject player;
 
     private float baseVelocityForward = 12f;
     private float baseVelocityUp = 10f;
@@ -14,8 +14,6 @@ public class GrenadeController : MonoBehaviour
     private void Start()
     {
         body = GetComponent<Rigidbody>();
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
 
         body.AddForce(Utils.MousePosition(transform.position.y) - transform.position, 
             ForceMode.Impulse);
@@ -31,18 +29,13 @@ public class GrenadeController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.Equals(player))
+        if (collision.gameObject.tag == "Player")
             return;
 
         GetComponentInChildren<MeshRenderer>().enabled = false;
         body.isKinematic = true;
 
-        Instantiate(flash, transform.position, transform.rotation).SetActive(true);
+        Instantiate(radius, transform.position, transform.rotation, transform.parent).SetActive(true);
         Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        print("tamer");
     }
 }
