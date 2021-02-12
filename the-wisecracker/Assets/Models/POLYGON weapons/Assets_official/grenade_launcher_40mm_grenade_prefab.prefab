@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7797195227441854544}
   m_Layer: 0
-  m_Name: M32_40mm_grenade 1_prefab
+  m_Name: grenade_launcher_40mm_grenade_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,10 +38,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7797195227441854544}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d654bcd5c6c424a49bfe5e9030242fb6,
+    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
         type: 3}
-      propertyPath: m_Name
-      value: M32_40mm_grenade 1
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 99.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 99.99997
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
         type: 3}
@@ -60,6 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.7071068
       objectReference: {fileID: 0}
@@ -72,16 +87,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
         type: 3}
@@ -98,21 +103,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 99.99997
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: d654bcd5c6c424a49bfe5e9030242fb6,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 99.99997
-      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: d654bcd5c6c424a49bfe5e9030242fb6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b50e69563dd6f0b4a90ed6133a03145c, type: 2}
+    - target: {fileID: -927199367670048503, guid: d654bcd5c6c424a49bfe5e9030242fb6,
+        type: 3}
+      propertyPath: m_Name
+      value: M32_40mm_grenade 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d654bcd5c6c424a49bfe5e9030242fb6, type: 3}
 --- !u!4 &6107667037941751398 stripped
