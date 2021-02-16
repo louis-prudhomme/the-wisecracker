@@ -6,19 +6,19 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerStats stats;
     private CharacterController controller;
+    private WeaponController weaponController;
 
-    private GameObject projectilesContainer;
     private Animator animator;
 
     private Vector3 position = new Vector3();
 
-    // Start is called before the first frame update
     void Start()
     {
         stats = GetComponent<PlayerStats>();
         controller = GetComponent<CharacterController>();
+        weaponController = GetComponent<WeaponController>();
+     
         animator = GetComponent<Animator>();
-        projectilesContainer = GameObject.FindGameObjectWithTag("ProjectilesContainer");
     }
 
     // Update is called once per frame
@@ -26,26 +26,22 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
         RotatePlayer();
-
-        if (Input.GetButton("Fire1") && stats.CanShoot)
-            Fire();
+        HandleShooting();
     }
 
-    private void Fire()
+    private void HandleShooting()
     {
-        GameObject grenade = Instantiate(stats.grenadePrefab,
-            transform.position, transform.rotation,
-            projectilesContainer.transform);
-        grenade.SetActive(true);
+        if (Input.GetButton("Fire1") && stats.CanShoot)
+        {
+            weaponController.Shoot(transform, Utils.MousePosition());
 
-        stats.lastShot = 0;
+            stats.lastShot = 0;
+        }
     }
 
     private void RotatePlayer()
     {
-        var mousePosition = Utils.MousePosition();
-        mousePosition.y = transform.position.y;
-        transform.LookAt(mousePosition);
+        transform.LookAt(Utils.MousePosition(transform.position.y));
     }
 
     private void MovePlayer()
@@ -69,4 +65,6 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(position);
     }
+
+    public WeaponController WeaponController => weaponController;
 }

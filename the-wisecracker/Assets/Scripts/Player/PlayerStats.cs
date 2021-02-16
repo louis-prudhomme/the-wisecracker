@@ -22,7 +22,10 @@ public class PlayerStats : MonoBehaviour
     public float shotDelay = 1;
     public float lastShot = 0;
 
-    public GameObject grenadePrefab;
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {

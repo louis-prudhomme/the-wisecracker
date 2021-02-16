@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Utils : MonoBehaviour
-{ 
+{
     private static Camera main = Camera.main;
     public static Vector3 MousePosition()
     {
@@ -25,7 +25,14 @@ public class Utils : MonoBehaviour
             v.x,
             v.y,
             v.z);
-        
+    }
+
+    public static Vector3 Copy(Vector3 v, float y)
+    {
+        return new Vector3(
+            v.x,
+            v.y,
+            v.z);
     }
 
     public static Quaternion Copy(Quaternion q)
