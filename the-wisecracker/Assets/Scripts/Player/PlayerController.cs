@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         MovePlayer();
@@ -31,12 +30,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetButton("Fire1") && stats.CanShoot)
-        {
-            weaponController.Shoot(transform, Utils.MousePosition());
-
-            stats.lastShot = 0;
-        }
+        if (Input.GetButton("Fire1"))
+            weaponController.Shoot(transform);
     }
 
     private void RotatePlayer()

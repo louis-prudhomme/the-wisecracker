@@ -26,16 +26,20 @@ public enum RioterState
 {
     AFRAID,
     ANGRY,
+    PASSED_OUT,
     STANDARD
 }
 
 public enum ScareType
 {
-    GRENADE
+    GRENADE,
+    SHOTGUN
 }
 
 public class RiotersStats : MonoBehaviour
 {
     public Level anger = new Level(0, 50, 100, 1);
     public Level fear = new Level(0, 50, 100, 5);
+
+    public float passingOutScareRadius = 3f;
 }

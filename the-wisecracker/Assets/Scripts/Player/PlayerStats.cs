@@ -12,24 +12,14 @@ public class PlayerStats : MonoBehaviour
 
     public bool canRun = true;
     public bool canMove = true;
-    public bool CanShoot => lastShot > shotDelay;
 
     public bool moving = false;
     public bool dead = false;
 
     public bool lockMouse = true;
 
-    public float shotDelay = 1;
-    public float lastShot = 0;
-
     private void Start()
     {
         
-    }
-
-    private void Update()
-    {
-        if (!CanShoot)
-            lastShot += Time.deltaTime;
     }
 }

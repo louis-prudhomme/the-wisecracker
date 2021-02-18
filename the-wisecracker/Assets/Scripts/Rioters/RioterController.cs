@@ -40,8 +40,15 @@ public class RioterController : MonoBehaviour
             case RioterState.STANDARD:
                 agent.destination = goal.transform.position;
                 break;
+            case RioterState.PASSED_OUT:
+                agent.enabled = false;
+                transform.Rotate(0f, 0f, 90f);
+                print("làl)");
+                break;
         }
     }
+
+
 
     private void UpdateState()
     {
@@ -62,11 +69,28 @@ public class RioterController : MonoBehaviour
 
     public void Scare(ScareType type)
     {
-        switch(type) 
+        switch(type)
         {
             case ScareType.GRENADE:
-                currentFear = stats.fear.Maximum;
+                currentFear += stats.fear.Maximum;
                 break;
+            case ScareType.SHOTGUN:
+                currentFear += stats.fear.Cap / 2;
+                break;
+        }
+    }
+
+    public void KnockOut()
+    {
+        state = RioterState.PASSED_OUT;
+        foreach (var c in Physics.OverlapSphere(transform.position, stats.passingOutScareRadius))
+        {
+            if (c.gameObject.tag == "Player")
+                print("close one"); //todo buff ? galvanisation ?
+            else if (c.gameObject.tag == "Rioter")
+            {
+                c.GetComponent<RioterController>().Scare(ScareType.GRENADE);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ public class GrenadeFlashController : MonoBehaviour
 {
     private float duration = .1f;
     private float existence = 0f;
-
+    
     private float radius = 5f;
 
     public GameObject flashPrefab;
@@ -29,7 +29,6 @@ public class GrenadeFlashController : MonoBehaviour
         existence += Time.deltaTime;
         if (existence > duration)
         {
-            Destroy(flash);
             FindColliding();
             Destroy(gameObject);
         }
@@ -38,13 +37,10 @@ public class GrenadeFlashController : MonoBehaviour
     private void FindColliding()
     {
         foreach (var c in Physics.OverlapSphere(transform.position, radius))
-        {
             if (c.gameObject.tag == "Player")
                 isPlayerColliding = true;
             else if (c.gameObject.tag == "Rioter")
-            {
-                c.GetComponent<RioterController>().Scare(ScareType.GRENADE);
-            }
-        }
+                c.GetComponent<RioterController>()
+                    .Scare(ScareType.GRENADE);
     }
 }

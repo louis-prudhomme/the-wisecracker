@@ -18,6 +18,8 @@ public struct Weapon
     public int clipSize;
     public int stockSize;
 
+    public float shotDelay;
+
     public WeaponType type;
 }
 
