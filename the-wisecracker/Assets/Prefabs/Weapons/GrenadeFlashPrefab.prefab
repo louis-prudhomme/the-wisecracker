@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 457719458601018393}
   - component: {fileID: 457719458601018392}
-  - component: {fileID: 457719458601018395}
   m_Layer: 0
   m_Name: GrenadeFlashPrefab
   m_TagString: Untagged
@@ -25,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457719458601018398}
-  m_LocalRotation: {x: 0.721657, y: -0.002271388, z: 0.0021788108, w: 0.69224375}
+  m_LocalRotation: {x: 0.72165394, y: -0.002273534, z: 0.0021808993, w: 0.6922469}
   m_LocalPosition: {x: 0, y: 3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -93,15 +92,3 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &457719458601018395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457719458601018398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b68c828d9e222734e87597c31bcc7129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -43,12 +43,6 @@ public class Utils : MonoBehaviour
         var distanceXZ = distance;
         distanceXZ.y = 0f;
 
-        float Sy = distance.y;
-        float Sxz = distanceXZ.magnitude;
-
-        float Vxz = distanceXZ.magnitude;
-        float Vy = distance.y + .5f * Mathf.Abs(Physics.gravity.y);
-
         var result = distanceXZ.normalized * distanceXZ.magnitude;
         result.y = distance.y + .5f * Mathf.Abs(Physics.gravity.y);
 

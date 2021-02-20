@@ -23,15 +23,33 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (stats.frozen)
+            return;
+
         MovePlayer();
         RotatePlayer();
         HandleShooting();
     }
 
+    public void Freeze()
+    {
+        stats.frozen = true;
+    }
+
+    public void Unfreeze()
+    {
+        stats.frozen = false;
+    }
+
     private void HandleShooting()
     {
         if (Input.GetButton("Fire1"))
-            weaponController.Shoot(transform);
+            weaponController.Handle(transform);
+        if (Input.GetButton("Reload"))
+            weaponController.Reload();
+        if (Input.GetButton("Mouse ScrollWheel") 
+            || Input.GetButton("SwapWeapon"))
+            weaponController.SwapWeapon();
     }
 
     private void RotatePlayer()
@@ -41,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        stats.moving = stats.canMove && 0 <
+        stats.moving = 0 <
             Mathf.Abs(Input.GetAxis("Vertical")) +
             Mathf.Abs(Input.GetAxis("Horizontal"));
 
@@ -60,6 +78,4 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(position);
     }
-
-    public WeaponController WeaponController => weaponController;
 }

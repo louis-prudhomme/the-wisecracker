@@ -2,43 +2,51 @@
 
 public class WeaponController : MonoBehaviour
 {
-    public WeaponList weaponList;
-
-    private Weapon currentWeapon;
-    private float lastShot = float.MaxValue;
+    public WeaponStats stats;
 
     public GameObject grenadePrefab;
     public GameObject shotgunLightPrefab;
     public GameObject shotgunGumPrefab;
 
-    private Vector3 barrelOffset = Vector3.forward * 2f;
-
     private GameObject projectilesContainer;
 
     private void Start()
     {
-        weaponList = GameObject
+        stats = GameObject
             .FindGameObjectWithTag("Database")
-            .GetComponent<WeaponList>();
-        currentWeapon = weaponList.weapons[1];
+            .GetComponent<WeaponStats>();
 
         projectilesContainer = GameObject
             .FindGameObjectWithTag("ProjectilesContainer");
     }
 
-    public void Shoot(Transform playerTransform)
+    public void Handle(Transform playerTransform)
     {
-        if (CanShoot)
-            Handle(playerTransform);
+        if (stats.CanShoot)
+        {
+            Shoot(playerTransform);
+            stats.Shoot();
+        }
+        else if (!stats.HasAmmo)
+            stats.Reload();
     }
 
-    private void Handle(Transform playerTransform)
+    public void SwapWeapon()
     {
-        lastShot = 0;
-        Vector3 instancePosition = Utils.Copy(playerTransform.position)
-            + transform.TransformDirection(barrelOffset);
+        stats.SwapWeapon();
+    }
 
-        switch (currentWeapon.type)
+    public void Reload()
+    {
+        stats.Reload();
+    }
+
+    private void Shoot(Transform playerTransform)
+    {
+        Vector3 instancePosition = Utils.Copy(playerTransform.position)
+            + transform.TransformDirection(stats.BarrelOffset);
+
+        switch (stats.Current.type)
         {
             case WeaponType.GRENADE_LAUNCHER:
                 Instantiate(grenadePrefab,
@@ -62,29 +70,6 @@ public class WeaponController : MonoBehaviour
                 break;
         }
     }
-
-    public void Update()
-    {
-        lastShot += Time.deltaTime;
-    }
-
-    private float percentageAmmoInClip => currentWeapon.currentAmmo 
-        / currentWeapon.clipSize;
-    private float percentageAmmoInStock => (currentWeapon.currentAmmo 
-        + currentWeapon.stockAmmo) 
-        / currentWeapon.stockSize;
-
-    public AmmoState CurrentWeaponState (float percentage) => percentage < .25
-        ? AmmoState.CRITICAL
-        : percentage < .50
-            ? AmmoState.CONCERNING
-            : AmmoState.STANDARD;
-
-    public AmmoState CurrentWeaponStockState => CurrentWeaponState(percentageAmmoInStock);
-    public AmmoState CurrentWeaponClipState => CurrentWeaponState(percentageAmmoInClip);
-
-    public bool CanShoot => lastShot > currentWeapon.shotDelay;
-    public Weapon CurrentWeapon => currentWeapon;
 
 
 }

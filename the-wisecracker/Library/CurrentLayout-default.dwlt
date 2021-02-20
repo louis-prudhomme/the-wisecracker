@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 43
     width: 1920
     height: 997
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 392}
+  m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 1
+  m_Maximized: 0
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 392}
+  m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 342}
-  m_MaxSize: {x: 12004, y: 8042}
+  m_MinSize: {x: 678, y: 321}
+  m_MaxSize: {x: 12003, y: 8021}
   vertical: 0
-  controlID: 65
+  controlID: 140
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,8 +137,8 @@ MonoBehaviour:
     y: 0
     width: 1555
     height: 947
-  m_MinSize: {x: 403, y: 342}
-  m_MaxSize: {x: 8003, y: 8042}
+  m_MinSize: {x: 403, y: 321}
+  m_MaxSize: {x: 8003, y: 8021}
   vertical: 1
   controlID: 66
 --- !u!114 &7
@@ -240,8 +240,8 @@ MonoBehaviour:
     y: 668
     width: 1555
     height: 279
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
@@ -267,8 +267,8 @@ MonoBehaviour:
     y: 0
     width: 365
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -496,27 +496,27 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 73
+    y: 19
     width: 374
     height: 647
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 50340000
-      m_LastClickedID: 13392
-      m_ExpandedIDs: c0f9ffff68fbffff0a34000004350000be350000
+      m_SelectedIDs: a4350000
+      m_LastClickedID: 13732
+      m_ExpandedIDs: 14f5ffff68fbffffbe340000d6340000f43400000835000074350000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: ShotgunSparks
-        m_OriginalName: ShotgunSparks
+        m_Name: UI
+        m_OriginalName: UI
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -1572
+        m_UserData: 13556
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 375
+    x: -1545
     y: 73
     width: 1178
     height: 647
@@ -565,9 +565,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -65.56557, y: 0.91043854, z: -2.6603823}
+    m_Target: {x: -64.21411, y: 0.58467287, z: -7.8107967}
     speed: 2
-    m_Value: {x: -65.56557, y: 0.91043854, z: -2.6603823}
+    m_Value: {x: -64.21411, y: 0.58467287, z: -7.8107967}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -613,13 +613,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.2787074, y: -0.49949136, z: 0.1735207, w: -0.8017576}
+    m_Target: {x: 0.010495676, y: 0.028529009, z: -0.00022112865, w: 0.9995891}
     speed: 2
-    m_Value: {x: -0.2786943, y: -0.49946785, z: 0.17351253, w: -0.80171984}
+    m_Value: {x: 0.010495137, y: 0.028527547, z: -0.00022111731, w: 0.9995378}
   m_Size:
-    m_Target: 7.0122967
+    m_Target: 2.3002138
     speed: 2
-    m_Value: 7.0122967
+    m_Value: 2.3002138
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -683,20 +683,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Weapons
+    - Assets/Scripts/UI
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts/Weapons
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\hella\Documents\the-wisecracker\the-wisecracker
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 38}
-    m_SelectedIDs: 1e3a0000
-    m_LastClickedID: 14878
-    m_ExpandedIDs: 00000000e8390000ea390000ec390000ee390000f0390000f2390000f4390000f6390000183a0000524300002e440000
+    m_SelectedIDs: 603a0000
+    m_LastClickedID: 14944
+    m_ExpandedIDs: 000000002e3a0000303a0000323a0000343a0000363a0000383a00003a3a00003c3a00003e3a0000403a0000423a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -724,7 +724,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e8390000ea390000ec390000ee390000f0390000f2390000f4390000f6390000f8390000
+    m_ExpandedIDs: 000000002e3a0000303a0000323a0000343a0000363a0000383a00003a3a00003c3a00003e3a0000403a0000423a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -749,8 +749,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 50340000
-    m_LastClickedInstanceID: 13392
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000743d0000
     m_RenameOverlay:
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 741
+    y: 687
     width: 1554
     height: 258
   m_ViewDataDictionary: {fileID: 0}
@@ -827,7 +827,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1555
+    x: -365
     y: 73
     width: 364
     height: 926

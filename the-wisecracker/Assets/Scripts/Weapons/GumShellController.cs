@@ -6,17 +6,14 @@ public class GumShellController : MonoBehaviour
 
     private Rigidbody body;
 
-    private float baseVelocityUp = 2f;
-    private float baseVelocityForward = 20f;
-
     private void Start()
     {
         body = GetComponent<Rigidbody>();
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
 
-        body.velocity = transform.up * baseVelocityUp
-            + transform.forward * baseVelocityForward;
+        body.velocity = Utils.ComputeParabolic(transform.position,
+            Utils.MousePosition());
     }
 
     // Update is called once per frame

@@ -33,6 +33,7 @@ public enum RioterState
 public enum ScareType
 {
     GRENADE,
+    VICTIM,
     SHOTGUN
 }
 

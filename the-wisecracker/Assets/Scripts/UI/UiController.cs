@@ -5,22 +5,26 @@ using UnityEngine;
 public class UiController : MonoBehaviour
 {
     public Canvas hud;
-
-    // Start is called before the first frame update
+    public StateScreenController stateScreen;
+    
     void Start()
     {
         hud.gameObject.SetActive(true);
+        stateScreen.Summon(StateScreenController.ScreenState.OFF);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("escape"))
             TogglePause();
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         hud.gameObject.SetActive(!hud.gameObject.activeSelf);
+
+        stateScreen.Summon(hud.gameObject.activeSelf
+            ? StateScreenController.ScreenState.OFF
+            : StateScreenController.ScreenState.PAUSED);
     }
 }

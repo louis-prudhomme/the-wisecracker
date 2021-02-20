@@ -28,7 +28,7 @@ public class ShotgunFlashController : MonoBehaviour
     {
         existence += Time.deltaTime;
         flash.intensity = baseLightIntensity 
-            * (1 - (duration / existence));
+            * (1.3f - (duration / existence));
 
         if (existence > duration)
         {

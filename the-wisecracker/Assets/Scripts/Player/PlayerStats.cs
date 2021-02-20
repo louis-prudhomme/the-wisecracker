@@ -10,16 +10,8 @@ public class PlayerStats : MonoBehaviour
     public float rotationSpeed = 1f;
     public float gravity = 10f;
 
-    public bool canRun = true;
-    public bool canMove = true;
+    public bool frozen = false;
 
     public bool moving = false;
     public bool dead = false;
-
-    public bool lockMouse = true;
-
-    private void Start()
-    {
-        
-    }
 }
