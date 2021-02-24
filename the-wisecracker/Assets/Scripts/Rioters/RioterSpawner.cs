@@ -18,9 +18,12 @@ public class RioterSpawner : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
 
-        riotersContainer = GameObject.FindGameObjectWithTag("RiotersContainer");
-        riotersRetreats = GameObject.FindGameObjectsWithTag("RiotersRetreat");
-        riotersGoals = GameObject.FindGameObjectsWithTag("RiotersGoal");
+        riotersContainer = Utils.FindGameObject(Utils.Tags.RIOTERS_CONTAINER);
+
+        riotersGoals = GameObject.FindGameObjectsWithTag(Utils.Tags.RIOTERS_GOAL);
+
+        if (riotersRetreats == null || riotersRetreats.Length == 0)
+            riotersRetreats = GameObject.FindGameObjectsWithTag(Utils.Tags.RIOTERS_RETREAT);
 
         for (int i = 0; i < numberOfRioters; i++)
         {
@@ -31,8 +34,8 @@ public class RioterSpawner : MonoBehaviour
 
             var rioterController = rioterPrefab.GetComponent<RioterController>();
 
-            rioterController.goal = riotersGoals[Random.Range(0, 3)];
-            rioterController.retreat = riotersRetreats[Random.Range(0, 3)];
+            rioterController.goal = riotersGoals[Random.Range(0, riotersGoals.Length)];
+            rioterController.retreat = riotersRetreats[Random.Range(0, riotersRetreats.Length)];
 
             Instantiate(rioterPrefab, 
                 spawnPosition, 

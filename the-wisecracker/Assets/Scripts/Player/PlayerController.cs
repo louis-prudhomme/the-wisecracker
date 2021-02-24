@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,22 +7,28 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private WeaponController weaponController;
 
+    public Action HurtEvent;
+    public Action DeathEvent;
+
     private Animator animator;
+
+    private float hp;
 
     private Vector3 position = new Vector3();
 
     void Start()
     {
-        stats = GetComponent<PlayerStats>();
         controller = GetComponent<CharacterController>();
         weaponController = GetComponent<WeaponController>();
      
         animator = GetComponent<Animator>();
+
+        hp = Stats.baseHp;
     }
 
     void Update()
     {
-        if (stats.frozen)
+        if (Stats.frozen)
             return;
 
         MovePlayer();
@@ -31,14 +36,15 @@ public class PlayerController : MonoBehaviour
         HandleShooting();
     }
 
-    public void Freeze()
-    {
-        stats.frozen = true;
-    }
+    public void Freeze() { Stats.frozen = true; }
+    public void Unfreeze() { Stats.frozen = false; }
 
-    public void Unfreeze()
+    public void DoDamage(float amount)
     {
-        stats.frozen = false;
+        hp -= amount;
+        HurtEvent();
+        if (hp < 0)
+            DeathEvent();
     }
 
     private void HandleShooting()
@@ -59,23 +65,34 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        stats.moving = 0 <
+        Stats.moving = 0 <
             Mathf.Abs(Input.GetAxis("Vertical")) +
             Mathf.Abs(Input.GetAxis("Horizontal"));
 
-        if (stats.moving) animator.Play("Moving");
+        if (Stats.moving) animator.Play("Moving");
         else animator.Play("Idle");
 
         position = (transform.TransformDirection(Vector3.forward)
-            * stats.positionSpeed
+            * Stats.positionSpeed
             * Input.GetAxis("Vertical"))
             + (transform.TransformDirection(Vector3.right)
-            * stats.positionSpeed
+            * Stats.positionSpeed
             * Input.GetAxis("Horizontal"));
 
-        if (!controller.isGrounded) position.y -= stats.gravity;
+        if (!controller.isGrounded) position.y -= Stats.gravity;
         position *= Time.deltaTime;
 
         controller.Move(position);
+    }
+
+    public float Hp => hp;
+    private PlayerStats Stats
+    {
+        get
+        {
+            if (stats == null)
+                stats = GetComponent<PlayerStats>();
+            return stats;
+        }
     }
 }

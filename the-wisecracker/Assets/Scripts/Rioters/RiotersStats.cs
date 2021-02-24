@@ -2,32 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Level
-{
-    private readonly int minimum;
-    private readonly int cap;
-    private readonly int maximum;
-    private readonly int step;
-
-    public int Minimum => minimum;
-    public int Cap => cap;
-    public int Maximum => maximum;
-    public int Step => step;
-
-    public Level(int minimum, int cap, int maximum, int step)
-    {
-        this.minimum = minimum;
-        this.cap = cap;
-        this.maximum = maximum;
-        this.step = step;
-    }
-}
 public enum RioterState
 {
     AFRAID,
     ANGRY,
     PASSED_OUT,
-    STANDARD
+    STANDARD,
+    FLEEING
 }
 
 public enum ScareType
@@ -39,8 +20,41 @@ public enum ScareType
 
 public class RiotersStats : MonoBehaviour
 {
-    public Level anger = new Level(0, 50, 100, 1);
-    public Level fear = new Level(0, 50, 100, 5);
+    public readonly int angerMinimum = 0;
+    public readonly int angerCap = 65;
+    public readonly int angerMaximum = 100;
+
+    public readonly int angerAmountVictim = 10;
+
+    public readonly int fearMinimum = 0;
+    public readonly int fearCap = 75;
+    public readonly int fleeCap = 50;
+    public readonly int fearMaximum = 100;
+
+    public readonly int fleeContagion = 2;
+    public readonly int fearContagion = 3;
+    public readonly int calmContagion = 7;
+    public readonly int angerContagion = 5;
+
+    public readonly float baseSpeed = 2f;
+    public readonly float maxSpeed = 4f;
+
+    public readonly float attackStrenght = 10f;
+    public readonly float attackDelay = 4f;
+    public readonly float attackRange = 2f;
+
+    public readonly float baseStoppingDistance = 5f;
+    public readonly float angryStoppingDistance = 1f;
+
+    public readonly float surgeDecrease = 5f;
+    public readonly float surgeMinimum = 0f;
+    public readonly float surgeMaximum = 100f;
+
+    public readonly float playerInfluenceDistance = 10f;
+
+    public float SpeedIncrement(float percentage) => (maxSpeed - baseSpeed) 
+        * percentage;
 
     public float passingOutScareRadius = 3f;
+    public readonly float fleeDistance = 10f;
 }

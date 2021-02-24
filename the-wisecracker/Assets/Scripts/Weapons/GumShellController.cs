@@ -10,7 +10,7 @@ public class GumShellController : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = Utils.FindGameObject(Utils.Tags.PLAYER);
 
         body.velocity = Utils.ComputeParabolic(transform.position,
             Utils.MousePosition());

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GrenadeController : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class GrenadeController : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = Utils.FindGameObject(Utils.Tags.PLAYER);
 
         body.velocity = Utils.ComputeParabolic(transform.position, 
             Utils.MousePosition()); 
@@ -21,11 +19,12 @@ public class GrenadeController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag(Utils.Tags.PLAYER))
             return;
-
-        GetComponentInChildren<MeshRenderer>().enabled = false;
-        body.isKinematic = true;
+        else if (collision.gameObject.CompareTag(Utils.Tags.RIOTER))
+            collision.gameObject
+                .GetComponent<RioterController>()
+                .KnockOut();
 
         Instantiate(radius, 
             transform.position, 

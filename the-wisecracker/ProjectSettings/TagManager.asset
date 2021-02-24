@@ -10,7 +10,8 @@ TagManager:
   - RiotersRetreat
   - ProjectilesContainer
   - GrenadeFlashRadius
-  - Database
+  - FxTemporaire
+  - Game
   layers:
   - Default
   - TransparentFX

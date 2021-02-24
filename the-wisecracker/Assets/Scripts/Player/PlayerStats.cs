@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float hp = 100.0f;
-
-    public float positionSpeed = 5f;
-    public float rotationSpeed = 1f;
-    public float gravity = 10f;
-
+    public readonly float baseHp = 100.0f;
+    
+    public readonly float positionSpeed = 5f;
+    public readonly float rotationSpeed = 1f;
+    public readonly float gravity = 10f;
+    
     public bool frozen = false;
-
+    
     public bool moving = false;
     public bool dead = false;
 }

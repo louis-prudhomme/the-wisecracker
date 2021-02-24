@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class StateScreenController : MonoBehaviour
 {
-    private PlayerController player;
-
     public Text title;
 
     public Button resume;
@@ -15,44 +13,65 @@ public class StateScreenController : MonoBehaviour
     public Button quit;
 
     public UiController uiController;
+    private PlayerController player;
 
     private Canvas canvas;
+    private ScreenState current;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")
-            .GetComponent<PlayerController>();
-
         quit.onClick.AddListener(OnButtonQuitClick);
         resume.onClick.AddListener(OnButtonResumeClick);
         startOver.onClick.AddListener(OnButtonStartOverClick);
 
         uiController = GetComponentInParent<UiController>();
-        canvas = GetComponent<Canvas>();
-        title.text = "Paused";
     }
 
     public void Summon(ScreenState state)
     {
+        current = state;
         switch (state)
         {
             case ScreenState.PAUSED:
                 resume.gameObject.SetActive(true);
+                title.text = "Paused";
+                break;
+            case ScreenState.DEATH:
+                resume.gameObject.SetActive(false);
+                title.text = "You are dead.";
+                break;
+            case ScreenState.DEFEAT:
+                resume.gameObject.SetActive(false);
+                title.text = "You have failed.";
+                break;
+            case ScreenState.VICTORY:
+                if (SceneManager.GetActiveScene().name == "Level1")
+                {
+                    resume.GetComponentInChildren<Text>().text = "Next level";
+                    resume.onClick.RemoveAllListeners();
+                    resume.onClick.AddListener(() => { SceneManager.LoadScene("Level2"); });
+                }
+                else if (SceneManager.GetActiveScene().name == "Level2")
+                {
+                    resume.GetComponentInChildren<Text>().text = "Restart game";
+                    resume.onClick.RemoveAllListeners();
+                    resume.onClick.AddListener(() => { SceneManager.LoadScene("TitleScreen"); });
+                }
+                else resume.gameObject.SetActive(false);
+                    
+                title.text = "You won !";
                 break;
         }
-        TogglePause(state == ScreenState.OFF);
+        TogglePause(state != ScreenState.OFF);
     }
 
-    private void TogglePause(bool isScreenDisabled)
+    private void TogglePause(bool isPaused)
     {
-        Time.timeScale = isScreenDisabled ? 1f : 0f;
-        
-        if (!isScreenDisabled)
-            player.Freeze();
-        else
-            player.Unfreeze();
+        Time.timeScale = isPaused ? 0f : 1f;
+        Canvas.enabled = isPaused;
 
-        Canvas().enabled = !isScreenDisabled;
+        if (isPaused) Player.Freeze();
+        else Player.Unfreeze();
     }
 
     private void OnButtonQuitClick()
@@ -67,23 +86,40 @@ public class StateScreenController : MonoBehaviour
 
     private void OnButtonStartOverClick()
     {
-        uiController.TogglePause();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //todo fix camera bug
+        SceneManager.LoadScene(SceneManager
+               .GetActiveScene().buildIndex);
     }
 
     public enum ScreenState
     {
         PAUSED,
         OFF,
-        WON,
-        LOST
+        VICTORY,
+        DEATH,
+        DEFEAT
     }
 
-    private Canvas Canvas()
+    private Canvas Canvas
     {
-        if (canvas == null)
-            canvas = GetComponent<Canvas>();
-        return canvas;
+        get
+        {
+            if (canvas == null)
+                canvas = GetComponent<Canvas>();
+            return canvas;
+        }
     }
+
+    private PlayerController Player
+    {
+        get
+        {
+            if (player == null)
+                player = Utils.FindGameObject(Utils.Tags.PLAYER)
+                    .GetComponent<PlayerController>();
+            return player;
+        }
+    }
+
+    public bool IsEscapeAllowed => current == ScreenState.PAUSED 
+        || current == ScreenState.OFF;
 }

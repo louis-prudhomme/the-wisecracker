@@ -5,7 +5,6 @@ public enum WeaponType
     SHOTGUN,
 }
 
-
 [System.Serializable]
 public struct Weapon
 {
