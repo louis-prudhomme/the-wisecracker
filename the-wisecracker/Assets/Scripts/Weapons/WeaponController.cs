@@ -108,6 +108,7 @@ public class WeaponController : MonoBehaviour
     {
         Vector3 instancePosition = Utils.Copy(playerTransform.position)
             + transform.TransformDirection(stats.BarrelOffset);
+        instancePosition.y = Utils.StandardLevelGroundPosition;
 
         switch (current.type)
         {

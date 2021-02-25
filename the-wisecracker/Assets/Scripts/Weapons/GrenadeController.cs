@@ -14,7 +14,7 @@ public class GrenadeController : MonoBehaviour
             player = Utils.FindGameObject(Utils.Tags.PLAYER);
 
         body.velocity = Utils.ComputeParabolic(transform.position, 
-            Utils.MousePosition()); 
+            Utils.MousePosition(1f));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,6 +26,7 @@ public class GrenadeController : MonoBehaviour
                 .GetComponent<RioterController>()
                 .KnockOut();
 
+        GetComponent<Rigidbody>().isKinematic = true;
         Instantiate(radius, 
             transform.position, 
             transform.rotation, 

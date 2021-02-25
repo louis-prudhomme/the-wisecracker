@@ -59,6 +59,11 @@ public class Utils : MonoBehaviour
         return result;
     }
 
+    public static float StandardLevelGroundPosition => SceneManager.GetActiveScene()
+        .name.Equals("Level1")
+        ? 0.352f
+        : 1.27f;
+
     public static GameObject FindGameObject(string tag) => GameObject.FindGameObjectWithTag(tag);
     public static GameObject[] FindGameObjects(string tag) => GameObject.FindGameObjectsWithTag(tag);
     public sealed class Tags

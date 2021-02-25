@@ -38,6 +38,24 @@ public class RioterController : MonoBehaviour
         UpdateGoal();
     }
 
+    private void UpdateState()
+    {
+        if (state == RioterState.PASSED_OUT)
+            return;
+
+        if (IsAngry)
+            if (Fear <= Anger)
+                State = RioterState.ANGRY;
+            else
+                State = RioterState.AFRAID;
+        else if (IsAfraid)
+            State = RioterState.AFRAID;
+        else if (IsScared)
+            State = RioterState.FLEEING;
+        else
+            State = RioterState.STANDARD;
+    }
+
     private void UpdateStats()
     {
         if (state == RioterState.ANGRY)
@@ -52,15 +70,23 @@ public class RioterController : MonoBehaviour
             ? stats.angryStoppingDistance
             : stats.baseStoppingDistance;
 
-        var playerDistance = Vector3.Distance(player.transform.position, transform.position);
-        playerDistance = playerDistance > stats.playerInfluenceDistance
-            ? stats.playerInfluenceDistance
-            : playerDistance;
-
         FearSurge -= stats.surgeDecrease * Time.deltaTime;
         AngerSurge -= stats.surgeDecrease * Time.deltaTime;
 
         AutoAssess();
+    }
+
+    private void AutoAssess()
+    {
+        if (IsAfraid || State == RioterState.PASSED_OUT)
+            return;
+        else if (IsAngry)
+            Fear -= stats.fearContagion
+                * Time.deltaTime
+                * 2;
+        else
+            Fear -= stats.fearContagion
+                * Time.deltaTime;
     }
 
     private void UpdateGoal()
@@ -84,34 +110,6 @@ public class RioterController : MonoBehaviour
                 break;
         }
         stateHandled = true;
-    }
-
-    private void PassOut()
-    {
-        agent.enabled = false;
-
-        normal.SetActive(false);
-        passedOut.SetActive(true);
-
-        GetComponent<CapsuleCollider>().isTrigger = true;
-    }
-
-    private void UpdateState()
-    {
-        if (state == RioterState.PASSED_OUT)
-            return;
-
-        if (IsAngry)
-            if (Fear <= Anger)
-                State = RioterState.ANGRY;
-            else
-                State = RioterState.AFRAID;
-        else if (IsAfraid)
-            State = RioterState.AFRAID;
-        else if (IsScared)
-            State = RioterState.FLEEING;
-        else
-            State = RioterState.STANDARD;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -140,29 +138,16 @@ public class RioterController : MonoBehaviour
                 .GetComponent<RioterController>());
     }
 
-    private void AutoAssess()
-    {
-        if (IsAfraid || State == RioterState.PASSED_OUT)
-            return; 
-        else if (IsAngry)
-            Fear -= stats.fearContagion
-                * Time.deltaTime
-                * 2;
-        else
-            Fear -= stats.fearContagion
-                * Time.deltaTime;
-    }
-
     private void AssessComrade(RioterController other)
     {
         if (other.State == RioterState.PASSED_OUT)
             return;
 
         if (other.State == RioterState.STANDARD)
-            Fear -= stats.calmContagion 
+            Fear -= stats.calmContagion
                 * Time.deltaTime;
         if (other.State == RioterState.AFRAID)
-            DirectFear += stats.fearContagion 
+            DirectFear += stats.fearContagion
                 * Time.deltaTime;
         if (other.State == RioterState.FLEEING)
             DirectFear += stats.fearContagion
@@ -203,6 +188,16 @@ public class RioterController : MonoBehaviour
                 Fear += stats.fleeCap;
                 break;
         }
+    }
+
+    private void PassOut()
+    {
+        agent.enabled = false;
+
+        normal.SetActive(false);
+        passedOut.SetActive(true);
+
+        GetComponent<CapsuleCollider>().isTrigger = true;
     }
 
     public void KnockOut()
