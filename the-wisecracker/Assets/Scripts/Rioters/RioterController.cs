@@ -58,9 +58,6 @@ public class RioterController : MonoBehaviour
 
     private void UpdateStats()
     {
-        if (state == RioterState.ANGRY)
-            agent.destination = player.transform.position;
-
         if (lastAttack < stats.attackDelay)
             lastAttack += Time.deltaTime;
 
@@ -91,6 +88,8 @@ public class RioterController : MonoBehaviour
 
     private void UpdateGoal()
     {
+        if (state == RioterState.ANGRY)
+            agent.destination = player.transform.position;
         if (stateHandled)
             return;
 
